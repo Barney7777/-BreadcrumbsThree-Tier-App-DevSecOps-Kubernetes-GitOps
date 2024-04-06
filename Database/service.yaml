@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongodb-svc
+  namespace: 3-tier-app
+spec:
+  selector:
+    app: mongodb
+  ports:
+  - name: mongodb-svc
+    protocol: TCP
+    port: 27017
+    targetPort: 27017
+  type: ClusterIP
+    
