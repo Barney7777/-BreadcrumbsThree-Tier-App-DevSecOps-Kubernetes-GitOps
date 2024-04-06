@@ -27,7 +27,7 @@ spec:
         image: 587866558777.dkr.ecr.ap-southeast-2.amazonaws.com/3-tier-backend:1.0.0-4
         imagePullPolicy: Always
         env:
-          - name: MONGO_URI
+          - name: MONGO_CONN_STR
             valueFrom:
               secretKeyRef:
                 name: mongo-secret
