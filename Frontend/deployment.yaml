@@ -1,0 +1,39 @@
+# create kubernetes manifest for frontend
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  namespace: 3-tier-app
+  labels:
+    app: frontend
+    env: dev
+spec:
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 25%
+  selector:
+     matchLabels:
+       app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      imagePullSecrets:
+        - name: ecr-registry-secret
+      containers:
+        - name: frontend
+          image: 587866558777.dkr.ecr.ap-southeast-2.amazonaws.com/3-tier-frontend:1.0.0-19
+          imagePullPolicy: Always
+          env:
+            - name: REACT_APP_BACKEND_URL
+              value: "http://backend.barneywang.click/api/tasks"
+          ports:
+            - containerPort: 80 # NGINX serves on port 80
+
+
+       
+    
