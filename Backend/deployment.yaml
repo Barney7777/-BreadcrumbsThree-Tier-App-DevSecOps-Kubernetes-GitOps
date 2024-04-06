@@ -31,7 +31,7 @@ spec:
             valueFrom:
               secretKeyRef:
                 name: mongo-secret
-                key: mongo-uri
+                key: MONGO_CONN_STR
         ports:
         - containerPort: 3500
     
